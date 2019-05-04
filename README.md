@@ -39,3 +39,9 @@ Persistent XSS
 2. create table tasklist(name text, detail text);
 3. .tables
 4. .exit
+
+
+git
+1. git add .
+2. git commit -m "comment"
+3. git push
