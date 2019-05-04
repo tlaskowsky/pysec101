@@ -16,8 +16,14 @@ os.environ['PASSWORD'] = '123456'
 def index():
     html = '<h2> CSRF demo </h2>'
     if isloggedin():
+        
         username = request.get_cookie('sessionid', secret='password')
-        return html + 'Hello ' + str(username)
+        html += 'Hello ' + str(username) 
+        html += '<form action="/changepasswd" method="POST">'
+        html += 'Change password: <input type="text" name="password" />'
+        html += '<input type="submit" value="update" />'
+        html += '</form>'
+        return html
     else:
         return html + 'You must login <a href="/login">here.</a>'
 
@@ -50,5 +56,18 @@ def authenticate(user_id, passwd):
         return True
     else:
         return False
+
+@route('/changepasswd', method='POST')
+def change_passwd():
+    if isloggedin():
+        new_passwd = request.forms.get('password')
+        os.environ['PASSWORD'] = new_passwd
+        return redirect('/login')
+    else:
+        html = 'You must login <a href="/login">here.</a>'
+        return html
+
+
+
 
 run(host='0.0.0.0', port=8000, debug=True)

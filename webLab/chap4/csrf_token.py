@@ -26,19 +26,19 @@ def index():
         global token
         if token == '':
             token = gen_token()
-            hidden_form = '<input type="hidden" name="token" value="' + token + '">'
-            
-            username = request.get_cookie('sessionid', secret='password')
-            html += 'Hello ' + str(username)
-            html += '<form action="/changepasswd" method="POST">'
-            html += 'Change password: <input type="text" name="password">'
-            html += hidden_form
-            html += '<input type="submit" value="update">'
-            html += '</form>'
-            return html
-        else:
-            html += 'You must login <a href="/login">here.</a>'
-            return html
+        hidden_form = '<input type="hidden" name="token" value="' + token + '">'
+
+        username = request.get_cookie('sessionid', secret='password')
+        html += 'Hello ' + str(username)
+        html += '<form action="/changepasswd" method="POST">'
+        html += 'Change password: <input type="text" name="password">'
+        html += hidden_form
+        html += '<input type="submit" value="update">'
+        html += '</form>'
+        return html
+    else:
+        html += 'You must login <a href="/login">here.</a>'
+        return html
 
 @get('/login')
 def login():

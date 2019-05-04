@@ -6,7 +6,7 @@ from bottle import run
 
 @route('/')
 def hello():
-    target_url = 'http://172.17.0.1:8000'
+    target_url = 'http://localhost:8000'
     html = '<h2>Attacker Website</h2>'
     html += '<iframe src="'
     html += target_url

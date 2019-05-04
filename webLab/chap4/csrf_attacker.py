@@ -5,7 +5,7 @@ from bottle import route
 from bottle import run
 from bottle import request
 
-TARGET_URL = 'http://172.17.0.1:8000/changepasswd'
+TARGET_URL = 'http://localhost:8000/changepasswd'
 
 @route('/')
 def index():
